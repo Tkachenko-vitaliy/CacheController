@@ -55,6 +55,7 @@ namespace cache
 		LocatorType     locatorType;
 		bool isEnabled;
 		bool isCleanBeforeLoad;
+		size_t hashMemoryLimit;
 	};
 
 

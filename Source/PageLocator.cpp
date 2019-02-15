@@ -1,4 +1,5 @@
 #include "PageLocator.h"
+#include "CacheException.h"
 
 using namespace cache;
 
@@ -80,6 +81,13 @@ void PageLocator::set(PageNumber page, SlotIndex descriptor)
 	{
 		if (page >= hash_.size())
 		{
+			if (hashLimit_ > 0) 
+			{
+				if ((page + 1) * sizeof(SlotIndex) > hashLimit_)
+				{
+					throw cache_exception(ERR_HASH_LIMIT);
+				}
+			}
 			hash_.resize(page + 1, INVALID_SLOT);
 		}
 		hash_[page] = descriptor;
@@ -107,7 +115,7 @@ void PageLocator::clear()
 	tree_.clear();
 }
 
-size_t PageLocator::get_memory_size() const
+size_t PageLocator::getMemorySize() const
 {
 	size_t memSize = 0;
 
@@ -130,6 +138,16 @@ size_t PageLocator::get_memory_size() const
 	}
 
 	return memSize;
+}
+
+void PageLocator::setHashMemoryLimit(size_t memoryLimit)
+{
+	hashLimit_ = memoryLimit;
+}
+
+size_t PageLocator::getHashMemoryLimit() const
+{
+	return hashLimit_;
 }
 
 PageLocator::iterator PageLocator::begin()

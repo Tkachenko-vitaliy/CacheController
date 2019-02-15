@@ -10,7 +10,8 @@ typedef enum
 	ERR_PAGE_COUNT_SIZE	= 3,
 	ERR_PAGE_OVERLOADED	= 4,
 	ERR_PARAMETER_NAME	= 5,
-	ERR_PARAMETER_VALUE	= 6
+	ERR_PARAMETER_VALUE	= 6,
+	ERR_HASH_LIMIT		= 7
 } CacheErrorCode;
 
 class cache_exception : public std::exception

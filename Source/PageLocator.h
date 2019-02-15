@@ -14,7 +14,9 @@ namespace cache
 		SlotIndex get(PageNumber page) const;
 		void set(PageNumber page, SlotIndex descriptor);
 		void clear();
-		size_t get_memory_size() const;
+		size_t getMemorySize() const;
+		void   setHashMemoryLimit(size_t memoryLimit);
+		size_t getHashMemoryLimit() const;
 
 		class iterator : public std::iterator<std::bidirectional_iterator_tag, iterator>
 		{
@@ -43,6 +45,7 @@ namespace cache
 		std::vector<SlotIndex> hash_;
 		std::map<PageNumber, SlotIndex> tree_;
 		LocatorType type_ = LOCATOR_HASH_MAP;
+		size_t hashLimit_ = 0;
 	};
 
 }; //namespace cache

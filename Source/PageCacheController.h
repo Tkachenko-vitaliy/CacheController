@@ -37,6 +37,7 @@ namespace cache
 		AlgoritmParameterValue getAlgoritmParameter(const char* paramName) const;
 
 		void setLocatorType(LocatorType type);
+		void setLimitHashMemory(size_t memoryLimit);
 
 		void setWritePolicy(WritePolicy policy);
 		void setWriteMissPolicy(WriteMissPolicy policy);

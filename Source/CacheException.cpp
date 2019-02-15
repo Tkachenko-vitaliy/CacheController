@@ -14,6 +14,7 @@ static const char* g_cErrorList[] =
 	"Page number is too long", //ERR_PAGE_OVERLOADED
 	"Unknown parameter name", // ERR_PARAMETER_NAME
 	"Incorrect parameter value", // ERR_PARAMETER_VALUE
+	"Hash memory exceed limit", //ERR_HASH_LIMIT
 };
 
 const char* cache_exception::what() const

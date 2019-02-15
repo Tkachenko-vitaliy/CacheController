@@ -522,6 +522,11 @@ void PageCacheController::setLocatorType(LocatorType type)
 	pageLocator_->setType(type);
 }
 
+void PageCacheController::setLimitHashMemory(size_t memoryLimit)
+{
+	pageLocator_->setHashMemoryLimit(memoryLimit);
+}
+
 CacheStatistic PageCacheController::getStatistic() const
 {
 	std::lock_guard<std::mutex> lock(synchronizer);
@@ -532,7 +537,7 @@ CacheStatistic PageCacheController::getStatistic() const
 	statistic.hitCount = hitCount_;
 	statistic.missCount = missCount_;
 	statistic.directCount = directCount_;
-	statistic.locatorMemory = pageLocator_->get_memory_size();
+	statistic.locatorMemory = pageLocator_->getMemorySize();
 
 	return statistic;
 }
@@ -559,6 +564,7 @@ CacheSettings PageCacheController::getSettings() const
 	settings.locatorType = pageLocator_->getType();
 	settings.isEnabled = isEnabled_;
 	settings.isCleanBeforeLoad = isCleanBeforeLoad_;
+	settings.hashMemoryLimit = pageLocator_->getHashMemoryLimit();
 
 	return settings;
 }
