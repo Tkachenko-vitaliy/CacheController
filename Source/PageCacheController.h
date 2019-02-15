@@ -97,7 +97,6 @@ namespace cache
 		DataAddress calcPageAddress(PageNumber page);
 
 		void log(const char* strFormat, ...);
-		void logMemory(const char* mode, const void* buffer, size_t bufferSize, void* metaData);
 	};
 
 }; //namespace cache
