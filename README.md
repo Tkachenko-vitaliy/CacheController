@@ -31,7 +31,7 @@ To clear cache memory, use the **clear** method. If you want the cache memory pa
 
 Sometimes it is advisable that data pages are loaded not from the start address of the secondary storage (for example, file with header). You can set offset for the start address of the page by calling the **setStartPageOffset** method.
 
-Multithread access and exception processing is supported; all operations can be performed independently in different threads.
+Multithread access and exception processing is supported; all read/write/flush operations can be performed independently in different threads.
 
 if **readStorage** or **writeStorage** method throws the exception, the controller will retrow it to the all threads that wait access to the corresponding page.
 
@@ -97,4 +97,4 @@ During operation, the controller gathers statistic information. You can retrieve
 To reset cache statistic information, use the **resetStatistic** method. 
 
 ### P.S.
-If you have questions or suggestions, write me at Tkachenko_vitaliy@hotmail.com
+If you have questions or suggestions, write me to Tkachenko_vitaliy@hotmail.com
