@@ -74,7 +74,7 @@ void TestControllerMT::run(const RandomSetup& setup)
 		index++;
 	}
 
-	while (threadReadyCount_ != threadCount_) {}
+	while (threadReadyCount_ != threadCount_) { std::this_thread::yield(); }
 	run_ = true;
 }
 
@@ -250,7 +250,7 @@ void TestControllerMT::threadWrite(size_t index)
 
 	threadReadyCount_++;
 
-	while (!run_) {}
+	while (!run_) { std::this_thread::yield(); }
 
 	while (opCounter < operationCount_)
 	{
