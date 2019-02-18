@@ -53,7 +53,6 @@ Since no data is returned to the requester on the write operations (cache miss),
 Default policy is Write-allocate. You can set write miss policy by calling the **setWriteMissPolicy** method.
 
 ### Cache algorithm
-
 If cache miss occurs, the cache algorithm defines rules what pages have to be replaced. The following algorithms were implemented:
 - FIFO (First In, First Out);
 -	LRU (Least Recently Used);
@@ -74,14 +73,13 @@ If you want to implement some other algorithm, you should do the following:
 ### Page locator
 When a controller executes a read/write operation, it figures out whether the required page is located in the cache. By default, that information is stored in the hash map, where for every number of page a sign is kept that points whether the page was loaded. The access to the information is very fast: O(1). 
 
-The size of hash map increases dynamically in the process of page requirements. Thus, if the address space of the secondary storage is large, a size of hash map can be significant. If cache memory is small, to keep the whole hash map can be too excessive. Instead of hash map, you can use binary tree. In the binary tree, the information only about the loaded pages is stored. However, an access to the information in that access will be slower: O(log N).
+The size of hash map increases dynamically in the process of page requirements. Thus, if the address space of the secondary storage is large, a size of hash map can be significant. If cache memory is small, to keep the whole hash map can be too excessive. Instead of hash map, you can use binary tree. In the binary tree, the information only about the loaded pages is stored. However, an access to the information in that case will be slower: O(log N), where N is a number of page loaded in cache.
 
 To set page locator type, use the **setLocatorType** method.
 
 You can limit a size of hash map memory by calling the **setLimitHashMemory** method. If the limit is set (more then 0, 0 means the size is not limited), the controller throws the exception if a memory size consumed by hash map exceed the specified value.
 
 ### Cache statistic
-
 During operation, the controller gathers statistic information. You can retrieve that information by calling the **getStatistic** method. The information contains the following:
 
 *operationCount* – common number of read/write operations;
